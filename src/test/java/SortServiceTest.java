@@ -41,7 +41,7 @@ class SortServiceTest {
         sortService.sort(actual, new BallSizeComparator());
         expected.sort(new BallSizeComparator());
 
-        Assertions.assertIterableEquals(actual, expected);
+        Assertions.assertIterableEquals(expected, actual);
     }
 
     @ParameterizedTest
@@ -60,7 +60,7 @@ class SortServiceTest {
         sortService.sort(actual, new BallSizeComparator());
         expected.sort(new BallSizeComparator());
 
-        Assertions.assertIterableEquals(actual, expected);
+        Assertions.assertIterableEquals(expected, actual);
     }
 
     @ParameterizedTest
@@ -70,7 +70,7 @@ class SortServiceTest {
         var expected = new ArrayList<Ball>();
 
         Assertions.assertDoesNotThrow(() -> sortService.sort(actual, new BallSizeComparator()));
-        Assertions.assertIterableEquals(actual, expected);
+        Assertions.assertIterableEquals(expected, actual);
     }
 
     @ParameterizedTest
@@ -83,7 +83,7 @@ class SortServiceTest {
         var expected = new ArrayList<>(actual);
 
         Assertions.assertDoesNotThrow(() -> sortService.sort(actual, new BallSizeComparator()));
-        Assertions.assertIterableEquals(actual, expected);
+        Assertions.assertIterableEquals(expected, actual);
     }
 
     @ParameterizedTest
@@ -101,7 +101,7 @@ class SortServiceTest {
         sortService.sort(actual, new BallSizeComparator());
         expected.sort(new BallSizeComparator());
 
-        Assertions.assertIterableEquals(actual, expected);
+        Assertions.assertIterableEquals(expected, actual);
     }
 
     @ParameterizedTest
@@ -116,7 +116,7 @@ class SortServiceTest {
         sortService.sort(actual, new BallSizeComparator());
         expected.sort(new BallSizeComparator());
 
-        Assertions.assertIterableEquals(actual, expected);
+        Assertions.assertIterableEquals(expected, actual);
     }
 
     @ParameterizedTest
@@ -133,6 +133,6 @@ class SortServiceTest {
 
         sortService.sort(actual, new BallSizeComparator());
 
-        Assertions.assertIterableEquals(actual, expected);
+        Assertions.assertIterableEquals(expected, actual);
     }
 }
