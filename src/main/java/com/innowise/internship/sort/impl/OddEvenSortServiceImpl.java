@@ -13,17 +13,17 @@ import java.util.concurrent.TimeUnit;
 public class OddEvenSortServiceImpl implements SortService {
 
     @Override
-    public void sort(List<Ball> balls, Comparator<Ball> comparator) {
+    public void sort(List<Ball> ballList, Comparator<Ball> comparator) {
 
-        if (balls.size() <= 1) return;
+        if (ballList.size() <= 1) return;
 
-        var threadCount = balls.size() / 2;
+        var threadCount = ballList.size() / 2;
         var threadPool = Executors.newFixedThreadPool(threadCount);
         var cyclicBarrier = new CyclicBarrier(threadCount);
 
         for (int i = 0; i < threadCount; i++) {
             threadPool.submit(
-                new CompareAndExchangeTask(balls, comparator, 2 * i + 1, cyclicBarrier));
+                new CompareAndExchangeTask(ballList, comparator, 2 * i + 1, cyclicBarrier));
         }
 
         try {
@@ -37,18 +37,18 @@ public class OddEvenSortServiceImpl implements SortService {
 
 class CompareAndExchangeTask implements Runnable {
 
-    private final List<Ball> balls;
+    private final List<Ball> ballList;
     private final Comparator<Ball> comparator;
     private final int threadPos;
     private final CyclicBarrier cyclicBarrier;
 
     public CompareAndExchangeTask(
-        List<Ball> balls,
+        List<Ball> ballList,
         Comparator<Ball> comparator,
         int threadPos,
         CyclicBarrier cyclicBarrier
     ) {
-        this.balls = balls;
+        this.ballList = ballList;
         this.comparator = comparator;
         this.threadPos = threadPos;
         this.cyclicBarrier = cyclicBarrier;
@@ -56,12 +56,12 @@ class CompareAndExchangeTask implements Runnable {
 
     @Override
     public void run() {
-        for (int i = 0; i < balls.size(); i++) {
+        for (int i = 0; i < ballList.size(); i++) {
             compareAndSwap(threadPos - 1, threadPos);
 
             waitForOthers();
 
-            if (threadPos + 1 < balls.size()) {
+            if (threadPos + 1 < ballList.size()) {
                 compareAndSwap(threadPos, threadPos + 1);
             }
 
@@ -79,8 +79,8 @@ class CompareAndExchangeTask implements Runnable {
     }
 
     private void compareAndSwap(int i, int j) {
-        if (comparator.compare(balls.get(i), balls.get(j)) > 0) {
-            Collections.swap(balls, i, j);
+        if (comparator.compare(ballList.get(i), ballList.get(j)) > 0) {
+            Collections.swap(ballList, i, j);
         }
     }
 }

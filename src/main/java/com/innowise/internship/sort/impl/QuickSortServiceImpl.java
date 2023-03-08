@@ -9,12 +9,12 @@ import java.util.List;
 public class QuickSortServiceImpl implements SortService {
 
     @Override
-    public void sort(List<Ball> balls, Comparator<Ball> comparator) {
-        quickSort(balls, comparator, 0, balls.size() - 1);
+    public void sort(List<Ball> ballList, Comparator<Ball> comparator) {
+        quickSort(ballList, comparator, 0, ballList.size() - 1);
     }
 
     private void quickSort(
-        List<Ball> balls,
+        List<Ball> ballList,
         Comparator<Ball> comparator,
         int lowBorder,
         int highBorder
@@ -28,18 +28,18 @@ public class QuickSortServiceImpl implements SortService {
         var r = highBorder;
 
         while (l < r) {
-            while (comparator.compare(balls.get(l), balls.get(pivot)) <= 0 && l < pivot) {
+            while (comparator.compare(ballList.get(l), ballList.get(pivot)) <= 0 && l < pivot) {
                 l++;
             }
-            while (comparator.compare(balls.get(r), balls.get(pivot)) >= 0 && l < r) {
+            while (comparator.compare(ballList.get(r), ballList.get(pivot)) >= 0 && l < r) {
                 r--;
             }
 
-            Collections.swap(balls, l, r);
+            Collections.swap(ballList, l, r);
         }
-        Collections.swap(balls, l, pivot);
+        Collections.swap(ballList, l, pivot);
 
-        quickSort(balls, comparator, lowBorder, l - 1);
-        quickSort(balls, comparator, r + 1, pivot);
+        quickSort(ballList, comparator, lowBorder, l - 1);
+        quickSort(ballList, comparator, r + 1, pivot);
     }
 }
