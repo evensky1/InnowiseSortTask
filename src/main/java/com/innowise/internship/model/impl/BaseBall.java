@@ -5,6 +5,10 @@ import com.innowise.internship.model.Color;
 
 public class BaseBall extends Ball {
 
+    public BaseBall() {
+        super();
+    }
+
     public BaseBall(int size, String brand, Color color) {
         super(size, brand, color);
     }

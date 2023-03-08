@@ -14,6 +14,8 @@ public abstract class Ball {
         this.color = color;
     }
 
+    protected Ball() {}
+
     public int getSize() {
         return size;
     }
