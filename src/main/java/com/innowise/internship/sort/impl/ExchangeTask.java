@@ -1,4 +1,4 @@
-package com.innowise.internship.sort.util;
+package com.innowise.internship.sort.impl;
 
 import com.innowise.internship.model.Ball;
 import java.util.Collections;

@@ -2,7 +2,6 @@ package com.innowise.internship.sort.impl;
 
 import com.innowise.internship.model.Ball;
 import com.innowise.internship.sort.SortService;
-import com.innowise.internship.sort.util.ExchangeTask;
 import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.CyclicBarrier;
